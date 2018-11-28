@@ -17,6 +17,10 @@
 #ifndef _UPDATER_INSTALL_H_
 #define _UPDATER_INSTALL_H_
 
+#define _Nonnull
+#define _Nullable
+#define AID_SYSTEM 1000
+
 struct State;
 
 void RegisterInstallFunctions();

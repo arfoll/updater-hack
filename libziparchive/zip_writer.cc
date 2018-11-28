@@ -27,7 +27,6 @@
 
 #include "android-base/logging.h"
 #include "utils/Compat.h"
-#include "utils/Log.h"
 
 #include "entry_name_utils-inl.h"
 #include "zip_archive_common.h"
@@ -303,10 +302,8 @@ int32_t ZipWriter::PrepareDeflate() {
 
   if (zerr != Z_OK) {
     if (zerr == Z_VERSION_ERROR) {
-      ALOGE("Installed zlib is not compatible with linked version (%s)", ZLIB_VERSION);
       return HandleError(kZlibError);
     } else {
-      ALOGE("deflateInit2 failed (zerr=%d)", zerr);
       return HandleError(kZlibError);
     }
   }

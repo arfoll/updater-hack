@@ -27,7 +27,6 @@
 #include <vector>
 
 #include <android-base/file.h>
-#include <log/log.h>
 
 #include <ziparchive/zip_archive.h>
 #include <ziparchive/zip_archive_stream_entry.h>
@@ -41,7 +40,6 @@ bool ZipArchiveStreamEntry::Init(const ZipEntry& entry) {
   ZipArchive* archive = reinterpret_cast<ZipArchive*>(handle_);
   off64_t data_offset = entry.offset;
   if (!archive->mapped_zip.SeekToOffset(data_offset)) {
-    ALOGW("lseek to data at %" PRId64 " failed: %s", data_offset, strerror(errno));
     return false;
   }
   crc32_ = entry.crc32;
@@ -91,9 +89,7 @@ const std::vector<uint8_t>* ZipArchiveStreamEntryUncompressed::Read() {
   errno = 0;
   if (!archive->mapped_zip.ReadData(data_.data(), bytes)) {
     if (errno != 0) {
-      ALOGE("Error reading from archive fd: %s", strerror(errno));
     } else {
-      ALOGE("Short read of zip file, possibly corrupted zip?");
     }
     length_ = 0;
     return nullptr;
@@ -162,9 +158,7 @@ bool ZipArchiveStreamEntryCompressed::Init(const ZipEntry& entry) {
   int zerr = zlib_inflateInit2(&z_stream_, -MAX_WBITS);
   if (zerr != Z_OK) {
     if (zerr == Z_VERSION_ERROR) {
-      ALOGE("Installed zlib is not compatible with linked version (%s)", ZLIB_VERSION);
     } else {
-      ALOGE("Call to inflateInit2 failed (zerr=%d)", zerr);
     }
 
     return false;
@@ -212,9 +206,7 @@ const std::vector<uint8_t>* ZipArchiveStreamEntryCompressed::Read() {
       errno = 0;
       if (!archive->mapped_zip.ReadData(in_.data(), bytes)) {
         if (errno != 0) {
-          ALOGE("Error reading from archive fd: %s", strerror(errno));
         } else {
-          ALOGE("Short read of zip file, possibly corrupted zip?");
         }
         return nullptr;
       }
@@ -226,8 +218,6 @@ const std::vector<uint8_t>* ZipArchiveStreamEntryCompressed::Read() {
 
     int zerr = inflate(&z_stream_, Z_NO_FLUSH);
     if (zerr != Z_OK && zerr != Z_STREAM_END) {
-      ALOGE("inflate zerr=%d (nIn=%p aIn=%u nOut=%p aOut=%u)", zerr, z_stream_.next_in,
-            z_stream_.avail_in, z_stream_.next_out, z_stream_.avail_out);
       return nullptr;
     }
 

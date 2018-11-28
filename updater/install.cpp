@@ -578,9 +578,12 @@ Value* GetPropFn(const char* name, State* state, const std::vector<std::unique_p
   if (!Evaluate(state, argv[0], &key)) {
     return nullptr;
   }
+#if 0
   std::string value = android::base::GetProperty(key, "");
 
   return StringValue(value);
+#endif
+  return nullptr;
 }
 
 // file_getprop(file, key)
@@ -866,7 +869,8 @@ Value* GetStageFn(const char* name, State* state, const std::vector<std::unique_
   }
 #endif
 
-  return StringValue(boot.stage);
+//  return StringValue(boot.stage);
+  return StringValue("");
 }
 
 Value* WipeBlockDeviceFn(const char* name, State* state, const std::vector<std::unique_ptr<Expr>>& argv) {
@@ -894,8 +898,9 @@ Value* WipeBlockDeviceFn(const char* name, State* state, const std::vector<std::
 
   // The wipe_block_device function in ext4_utils returns 0 on success and 1
   // for failure.
-  int status = wipe_block_device(fd, len);
-  return StringValue((status == 0) ? "t" : "");
+//  int status = wipe_block_device(fd, len);
+  return StringValue("1");
+  //return StringValue((status == 0) ? "t" : "");
 }
 
 Value* EnableRebootFn(const char* name, State* state, const std::vector<std::unique_ptr<Expr>>& argv) {

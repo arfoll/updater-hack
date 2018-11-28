@@ -66,7 +66,7 @@ static int EliminateOpenFiles(const std::string& dirname, std::set<std::string>*
       int count = readlink(fd_path.c_str(), link, sizeof(link)-1);
       if (count >= 0) {
         link[count] = '\0';
-        if (android::base::StartsWith(link, dirname)) {
+        if (android::base::StartsWith(link, dirname.c_str())) {
           if (files->erase(link) > 0) {
             LOG(INFO) << link << " is open by " << de->d_name;
           }

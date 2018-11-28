@@ -22,6 +22,8 @@
 #include <memory>
 #include <string>
 #include <vector>
+#include <cstdarg>
+#include <stdarg.h>
 
 #include <android-base/macros.h>
 

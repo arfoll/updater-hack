@@ -46,7 +46,6 @@
 #include <android-base/unique_fd.h>
 #include <applypatch/applypatch.h>
 #include <brotli/decode.h>
-#include <fec/io.h>
 #include <openssl/sha.h>
 //#include <private/android_filesystem_config.h>
 //#include <verity/hash_tree_builder.h>
@@ -2172,6 +2171,7 @@ Value* BlockImageRecoverFn(const char* name, State* state,
   // Output notice to log when recover is attempted
   LOG(INFO) << filename->data << " image corrupted, attempting to recover...";
 
+#if 0
   // When opened with O_RDWR, libfec rewrites corrupted blocks when they are read
   fec::io fh(filename->data, O_RDWR);
 
@@ -2220,6 +2220,7 @@ Value* BlockImageRecoverFn(const char* name, State* state,
   }
   LOG(INFO) << "..." << filename->data << " image recovered successfully.";
   return StringValue("t");
+#endif
 }
 
 void RegisterBlockImageFunctions() {

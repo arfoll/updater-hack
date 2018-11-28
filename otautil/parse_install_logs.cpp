@@ -106,7 +106,8 @@ std::map<std::string, int64_t> ParseLastInstall(const std::string& file_name) {
 
   // LAST_INSTALL starts with "/sideload/package.zip" after a sideload.
   if (android::base::Trim(lines[0]) == "/sideload/package.zip") {
-    int type = (android::base::GetProperty("ro.build.type", "") == "user") ? 1 : 0;
+    //int type = (android::base::GetProperty("ro.build.type", "") == "user") ? 1 : 0;
+    int type = 1;
     metrics.emplace(OTA_SIDELOAD_METRICS, type);
   }
 
