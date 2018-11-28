@@ -1,0 +1,1 @@
+g++ -shared -fPIC *.cpp -Iinclude/ -I../ -I../otautil/include ../android-base.so ../otautil/otautil.so
