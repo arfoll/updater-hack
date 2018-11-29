@@ -22,7 +22,7 @@ cd ../
 cd edify/
 #g++ -shared -fPIC *.cpp -Iinclude/ -I../ -I../otautil/include -I../base/include ../android-base.so ../otautil.so -o ../edify.so
 flex lexer.ll
-yacc -d parser.y
+yacc -d parser.yy
 cp y.tab.h parser.h
 g++ -shared -fPIC expr.cpp  lex.yy.c y.tab.c -Iinclude -I../base/include -I../otautil/include ../android-base.so ../otautil.so
 cd ../

@@ -1,0 +1,1 @@
+ g++ -shared -fPIC -I../ -Iinclude/ brotli_decompressor.cc bspatch.cc bz2_decompressor.cc buffer_file.cc decompressor_interface.cc extents.cc extents_file.cc file.cc logging.cc memory_file.cc patch_reader.cc sink_file.cc utils.cc -L../brotli/build/libbrotlidec.so -I../brotli/c/include/
