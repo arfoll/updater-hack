@@ -37,7 +37,7 @@ cd libziparchive/
 g++ -fpermissive -std=c++17  -shared -fPIC -o ../ziparchive.so zip_archive.cc zip_archive_stream_entry.cc zip_writer.cc -Iinclude/ -I../base/include/ ../android-base.so -I../libutils/include ../filemap.so
 cd ../
 
-cd cutils/
+cd libcutils/
 g++ -fPIC -shared *.cpp -o ../libcutils.so -I../base/ -Iinclude
 cd ../
 
