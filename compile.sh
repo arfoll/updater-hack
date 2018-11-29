@@ -28,15 +28,13 @@ g++ -shared -fPIC expr.cpp  lex.yy.c y.tab.c -Iinclude -I../base/include -I../ot
 cd ../
 
 # miniutils
-cd utils/
+cd libutils/
 g++ -shared -fPIC FileMap.cpp -Iinclude -o ../filemap.so
 cd ../
 
 cd libziparchive/
 #g++ -shared -fPIC -o ../ziparchive.so *.cpp -Iinclude/ -I../base/include/ ../android-base.so
-g++ -fpermissive -std=c++17  -shared -fPIC -o ../ziparchive.so zip_archive.cc
-zip_archive_stream_entry.cc zip_writer.cc -Iinclude/ -I../base/include/
-../android-base.so -I../libutils/include ../filemap.so
+g++ -fpermissive -std=c++17  -shared -fPIC -o ../ziparchive.so zip_archive.cc zip_archive_stream_entry.cc zip_writer.cc -Iinclude/ -I../base/include/ ../android-base.so -I../libutils/include ../filemap.so
 cd ../
 
 cd cutils/
