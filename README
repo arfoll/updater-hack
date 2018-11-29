@@ -5,4 +5,4 @@ Dependencies:
 openssl, libz, libz2, keystore, gtest
 
 Build utils:
-autotools, cmake, g++ (with c++17 support)
+autotools, cmake, g++ (with c++17 support), yacc, flex
