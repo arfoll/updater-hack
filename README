@@ -5,7 +5,7 @@ Below is a rough set of dependencies that you'll need (note that you need the
 -dev/-devel libs for these)
 
 Dependencies:
-openssl, libz, libz2, keystore, gtest, libcap
+openssl, libz, libz2, keystore, gtest, libcap, libzip
 
 Build utils:
 autotools, cmake, g++ (with c++17 support), yacc, flex
