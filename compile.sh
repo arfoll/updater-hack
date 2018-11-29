@@ -1,4 +1,3 @@
-
 cd base/
 g++ -fPIC -shared file.cpp logging.cpp parsenetaddress.cpp quick_exit.cpp stringprintf.cpp strings.cpp test_utils.cpp -Iinclude/ -o ../android-base.so
 cd ../
@@ -54,7 +53,5 @@ g++ -shared -fPIC -o ../applypatch.so -fpermissive -std=c++17 applypatch.cpp fre
 cd ../
 
 cd updater/
-g++ blockimg.cpp commands.cpp install.cpp updater.cpp -Iinclude -I../base/include -I../libziparchive/include -I../otautil/include -I../applypatch/include -I../brotli/c/include -I../ext4_utils/include/ -I../libfec/include -I../edify/include
+g++ -Wl,--as-needed -std=c++17 updater.cpp blockimg.cpp commands.cpp install.cpp -Iinclude -I../base/include -I../libziparchive/include -I../otautil/include -I../applypatch/include -I../brotli/c/include -I../ext4_utils/include/ -I../edify/include -o updater -lbz2 -lzip -lssl -lcrypto -lpthread ../*.so
 cd ../
-
- g++ -Wl,--as-needed -std=c++17 updater.cpp blockimg.cpp commands.cpp install.cpp -Iinclude -I../base/include -I../libziparchive/include -I../otautil/include -I../applypatch/include -I../brotli/c/include -I../ext4_utils/include/ -I../edify/include -o updater -lbz2 -lzip -lssl -lcrypto -lpthread ../*.so
