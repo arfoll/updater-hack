@@ -53,5 +53,6 @@ g++ -shared -fPIC -o ../applypatch.so -fpermissive -std=c++17 applypatch.cpp fre
 cd ../
 
 cd updater/
+cp ../brotli/libbrotlidec.so libbrotlidec.so.1
 g++ -Wl,--as-needed -std=c++17 updater.cpp blockimg.cpp commands.cpp install.cpp -Iinclude -I../base/include -I../libziparchive/include -I../otautil/include -I../applypatch/include -I../brotli/c/include -I../ext4_utils/include/ -I../edify/include -o updater -lbz2 -lzip -lssl -lcrypto -lpthread ../*.so
 cd ../

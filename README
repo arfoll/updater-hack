@@ -1,8 +1,11 @@
 This is a hack/POC to show updater from android recovery building on GNU/Linux.
 This is not meant to be used and I am aware the build script is disgusting :)
 
+Below is a rough set of dependencies that you'll need (note that you need the
+-dev/-devel libs for these)
+
 Dependencies:
-openssl, libz, libz2, keystore, gtest
+openssl, libz, libz2, keystore, gtest, libcap
 
 Build utils:
 autotools, cmake, g++ (with c++17 support), yacc, flex
