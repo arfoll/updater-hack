@@ -1,2 +1,7 @@
 *.so
 *.a
+build/
+edify/lex.yy.cpp
+edify/parser.h
+edify/y.tab.cpp
+edify/y.tab.h
